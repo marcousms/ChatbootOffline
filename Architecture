@@ -1,1 +1,19 @@
+graph LR
+    subgraph Frontend (Gradio)
+        A[Chatbot UI] -->|HTTP| B(Python requests)
+    end
+    B -->|POST /api/chat| C(Ollama server)
+    C --> D[LLM (ex: Llama3)]
+    subgraph Bonus
+        mic[Microphone] -->|Audio| E(Whisper ASR)
+        E -->|Texte| A
+    end
+API : http://localhost:11434/api/chat
+{
+  "model": "llama3",
+  "messages": [
+    {"role": "user", "content": "Bonjour"},
+    {"role": "assistant", "content": "Salut !"}
+  ]
+}
 
